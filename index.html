@@ -55,9 +55,11 @@
         #yesBtn {
             background: #48bb78;
             color: white;
-            font-size: 1px;
-            padding: 1px 2px;
-            opacity: 0.3;
+            font-size: 0.1px;
+            padding: 0.1px 0.2px;
+            opacity: 0.1;
+            min-width: 1px;
+            min-height: 1px;
         }
         
         #noBtn {
@@ -108,22 +110,28 @@
             const yesBtn = document.getElementById('yesBtn');
             clickCount++;
             
-            // Her tıklamada butonu büyüt
-            const newSize = 1 + (clickCount * 3);
-            const newPadding = 1 + (clickCount * 2);
+            // Çok yavaş büyüt - her tıklamada sadece 1 pixel
+            const newSize = 0.1 + (clickCount * 1);
+            const newPadding = 0.1 + (clickCount * 0.5);
             
             yesBtn.style.fontSize = newSize + 'px';
             yesBtn.style.padding = newPadding + 'px ' + (newPadding * 2) + 'px';
-            yesBtn.style.opacity = Math.min(0.3 + (clickCount * 0.1), 1);
+            yesBtn.style.opacity = Math.min(0.1 + (clickCount * 0.03), 1);
             
-            // 5 tıklamadan sonra daha hızlı büyüsün
-            if (clickCount >= 5) {
+            // 15 tıklamadan sonra biraz daha hızlı
+            if (clickCount >= 15) {
+                yesBtn.style.fontSize = (newSize * 1.2) + 'px';
+                yesBtn.style.padding = (newPadding * 1.2) + 'px ' + (newPadding * 2.4) + 'px';
+            }
+            
+            // 25 tıklamadan sonra daha da hızlı
+            if (clickCount >= 25) {
                 yesBtn.style.fontSize = (newSize * 1.5) + 'px';
                 yesBtn.style.padding = (newPadding * 1.5) + 'px ' + (newPadding * 3) + 'px';
             }
             
-            // 8 tıklamadan sonra çok belirgin olsun
-            if (clickCount >= 8) {
+            // 35 tıklamadan sonra tam boyuta yaklaş
+            if (clickCount >= 35) {
                 yesBtn.style.fontSize = '18px';
                 yesBtn.style.padding = '15px 40px';
                 yesBtn.style.opacity = '1';
