@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beni seviyor musun Elif</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .button-container {
+            position: relative;
+            height: 200px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        button {
+            padding: 15px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        #yesBtn {
+            background: #48bb78;
+            color: white;
+            font-size: 1px;
+            padding: 1px 2px;
+            opacity: 0.3;
+        }
+        
+        #noBtn {
+            background: #f56565;
+            color: white;
+        }
+        
+        #noBtn:active {
+            transform: scale(0.95);
+        }
+        
+        .message {
+            display: none;
+            font-size: 24px;
+            color: #48bb78;
+            margin-top: 20px;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .hearts {
+            font-size: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Beni seviyor musun Elif</h1>
+        <div class="button-container">
+            <button id="noBtn" onclick="growYesButton()">Hayır</button>
+            <button id="yesBtn" onclick="showLove()">EVET AŞKIM!!!</button>
+        </div>
+        <div id="loveMessage" class="message">
+            <div>Teşekkür ederim. ben de seni çok seviyorum Elif'im!!!</div>
+            <div class="hearts">❤️💕❤️</div>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        
+        function growYesButton() {
+            const yesBtn = document.getElementById('yesBtn');
+            clickCount++;
+            
+            // Her tıklamada butonu büyüt
+            const newSize = 1 + (clickCount * 3);
+            const newPadding = 1 + (clickCount * 2);
+            
+            yesBtn.style.fontSize = newSize + 'px';
+            yesBtn.style.padding = newPadding + 'px ' + (newPadding * 2) + 'px';
+            yesBtn.style.opacity = Math.min(0.3 + (clickCount * 0.1), 1);
+            
+            // 5 tıklamadan sonra daha hızlı büyüsün
+            if (clickCount >= 5) {
+                yesBtn.style.fontSize = (newSize * 1.5) + 'px';
+                yesBtn.style.padding = (newPadding * 1.5) + 'px ' + (newPadding * 3) + 'px';
+            }
+            
+            // 8 tıklamadan sonra çok belirgin olsun
+            if (clickCount >= 8) {
+                yesBtn.style.fontSize = '18px';
+                yesBtn.style.padding = '15px 40px';
+                yesBtn.style.opacity = '1';
+            }
+        }
+        
+        function showLove() {
+            document.querySelector('.button-container').style.display = 'none';
+            document.getElementById('loveMessage').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
